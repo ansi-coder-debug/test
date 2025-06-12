@@ -21,7 +21,6 @@ final dummyVideoUrls = [
 
 ValueNotifier<Set<int>> likedVideosNotifier = ValueNotifier({});
 
-
 @injectable
 class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
   FastLaughBloc(IDownloadsRepo _downloadService)
@@ -47,12 +46,12 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
 
     on<LikeVideo>((event, emit) async {
       likedVideosNotifier.value.add(event.id);
-    
-    
+      likedVideosNotifier.notifyListeners();
     });
 
     on<UnlikeVideo>((event, emit) async {
       likedVideosNotifier.value.remove(event.id);
+      likedVideosNotifier.notifyListeners();
     });
   }
 }

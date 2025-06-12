@@ -92,36 +92,40 @@ class VideoListItem extends StatelessWidget {
                       ValueListenableBuilder(
                         valueListenable: likedVideosNotifier,
 
-
-                        builder: (BuildContext c,Set<int>newLikedListIds,Widget?_) {
-
-
-                          final _index = index;
-                          if (newLikedListIds.contains(_index)) {
-                            return GestureDetector(
-                              onTap: () {
-                                BlocProvider.of<FastLaughBloc>(
-                                  context,
-                                ).add(UnlikeVideo(id: _index));
-                              },
-                              child: const VideoActionWidget(
-                                icon: Icons.favorite,
-                                title: 'Liked',
-                              ),
-                            );
-                          }
-                          return GestureDetector(
-                            onTap: () {
-                              BlocProvider.of<FastLaughBloc>(
-                                context,
-                              ).add(LikeVideo(id: _index));
+                        builder:
+                            (
+                              BuildContext c,
+                              Set<int> newLikedListIds,
+                              Widget? _,
+                            ) {
+                              final _index = index;
+                              if (newLikedListIds.contains(_index)) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // BlocProvider.of<FastLaughBloc>(
+                                    //   context,
+                                    // ).add(UnlikeVideo(id: _index));
+                                    likedVideosNotifier.value.remove(_index);
+                                  },
+                                  child: const VideoActionWidget(
+                                    icon: Icons.favorite,
+                                    title: 'Liked',
+                                  ),
+                                );
+                              }
+                              return GestureDetector(
+                                onTap: () {
+                                  // BlocProvider.of<FastLaughBloc>(
+                                  //   context,
+                                  // ).add(LikeVideo(id: _index));
+                                  likedVideosNotifier.value.add(_index);
+                                },
+                                child: const VideoActionWidget(
+                                  icon: Icons.emoji_emotions,
+                                  title: 'LoL',
+                                ),
+                              );
                             },
-                            child: const VideoActionWidget(
-                              icon: Icons.emoji_emotions,
-                              title: 'LoL',
-                            ),
-                          );
-                        },
                       ),
                       KHeight,
                       const VideoActionWidget(
