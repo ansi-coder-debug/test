@@ -17,9 +17,7 @@ class SearchImpl implements SearchService {
     try {
       final response = await Dio(
         BaseOptions(),
-      ).get(ApiEndPoints.search, queryParameters: {'query': movieQuery
-      }
-      );
+      ).get(ApiEndPoints.search, queryParameters: {'query': movieQuery});
       // log(response.data.toString());
 
       if (response.statusCode == 200 || response.statusCode == 201) {

@@ -26,7 +26,7 @@ class SearchResultWidget extends StatelessWidget {
                 shrinkWrap: true,
                 children: List.generate(20, (index) {
                   final movie = state.searchResultList[index];
-                  return MainCard(imageUrl: movie.posterImageUrl,);
+                  return MainCard(imageUrl: movie.posterImageUrl);
                 }),
               );
             },

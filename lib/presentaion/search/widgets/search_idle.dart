@@ -42,7 +42,7 @@ class SearchIdleWidget extends StatelessWidget {
                   final movie = state.idleList[index];
                   return TopSearchItemTile(
                     title: movie.title ?? 'no title provided',
-                    imageUrl: '$imageAppendUrl${movie.posterPath}' ,
+                    imageUrl: '$imageAppendUrl${movie.posterPath}',
                   );
                 },
                 separatorBuilder: (context, index) => KHeight20,
@@ -60,7 +60,11 @@ class TopSearchItemTile extends StatelessWidget {
   final String title;
   final String imageUrl;
 
-  const TopSearchItemTile({Key? Key, required this.title, required this.imageUrl});
+  const TopSearchItemTile({
+    Key? Key,
+    required this.title,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {

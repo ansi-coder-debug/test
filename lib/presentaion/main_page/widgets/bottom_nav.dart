@@ -7,7 +7,7 @@ class BottomNavigationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder( 
+    return ValueListenableBuilder(
       valueListenable: indexChangeNotifier,
       builder: (context, int newIndex, _) {
         return BottomNavigationBar(

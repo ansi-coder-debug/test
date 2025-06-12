@@ -21,12 +21,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: 
-      [
+      providers: [
         BlocProvider(create: (context) => getIt<DownloadsBloc>()),
-          BlocProvider(create: (context) => getIt<SearchBloc>()),
-          BlocProvider(create: (context) => getIt<FastLaughBloc>()),
-        ],
+        BlocProvider(create: (context) => getIt<SearchBloc>()),
+        BlocProvider(create: (context) => getIt<FastLaughBloc>()),
+      ],
 
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

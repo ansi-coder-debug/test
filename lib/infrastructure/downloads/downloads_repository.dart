@@ -34,12 +34,11 @@ class DownloadsRepository implements IDownloadsRepo {
           );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-         
         final downloadList = (response.data['result'] as List).map((e) {
           return (Downloads.fromJson(e));
         }).toList();
-      
-      print(downloadList);
+
+        print(downloadList);
         return Right(downloadList);
       } else {
         return const Left(MainFailure.serverFailure());
