@@ -3,7 +3,11 @@ import 'package:test/core/colors/colors.dart';
 import 'package:test/core/constant.dart';
 
 class VideoWidget extends StatelessWidget {
-  const VideoWidget({super.key});
+  final String? url;
+  const VideoWidget({
+   required this.url,
+    Key? key, 
+   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +16,8 @@ class VideoWidget extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: 200,
-          child: Image.network(newAndHotTempImage, fit: BoxFit.cover),
+          child: Image.network(url!,
+           fit: BoxFit.cover),
         ),
         Positioned(
           right: 10,

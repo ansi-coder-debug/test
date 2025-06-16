@@ -5,7 +5,16 @@ import 'package:test/presentaion/home/widget/custom_button_widget.dart';
 import 'package:test/presentaion/widgets/video_widget.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
-  const EveryonesWatchingWidget({super.key});
+ final String posterPath;
+  final String movieName;
+  final String description;
+
+  const EveryonesWatchingWidget({super.key,
+   required this.posterPath,
+    required this.movieName,
+     required this.description});
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,7 @@ class EveryonesWatchingWidget extends StatelessWidget {
           style: TextStyle(color: AppStyles.CGreycolor),
         ),
         AppStyles.KHeight50,
-        const VideoWidget(),
+         VideoWidget(url: newAndHotTempImage,),
         KHeight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,

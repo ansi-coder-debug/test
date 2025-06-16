@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test/application/hot_and_new/hot_and_new_bloc.dart';
 import 'package:test/core/app_styles.dart';
 import 'package:test/core/colors/colors.dart';
 import 'package:test/core/constant.dart';
@@ -55,24 +57,71 @@ class NewAndHot extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: [_buildComingSoon(), _buildEveryonesWatching()],
+          children: [
+            const ComingSoonList(
+              key: Key('coming_soon'),
+            ), //10:04 part 53 continue from here
+            _buildEveryonesWatching(),
+          ],
         ),
       ),
     );
   }
-
-  Widget _buildComingSoon() {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (BuildContext context, index) => const ComingSoonWidget(),
-    );
-  }
+  // Widget _buildComingSoon() {
+  //   return ListView.builder(
+  //     itemCount: 10,
+  //     itemBuilder: (BuildContext context, index) => const ComingSoonWidget(),
+  //   );
+  // }
 
   Widget _buildEveryonesWatching() {
     return ListView.builder(
       itemCount: 10,
-      itemBuilder: (BuildContext context, index) =>
-          const EveryonesWatchingWidget(),
+      itemBuilder: (BuildContext context, index) => SizedBox(),
+      // const EveryonesWatchingWidget(),
+    );
+  }
+}
+
+class ComingSoonList extends StatelessWidget {
+  const ComingSoonList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<HotAndNewBloc>(context).add(const LoadDataInComingSoon());
+    });
+
+    return BlocBuilder<HotAndNewBloc, HotAndNewState>(
+      builder: (context, state) {
+        if (state.isLoading) {
+          return Center(child: CircularProgressIndicator(strokeWidth: 2));
+        } else if (state.hasError) {
+          return Center(
+            child: Text('error while loading the coming soon list '),
+          );
+        } else if (state.comingSoonList.isEmpty) {
+          return Center(child: Text('coming soon list is empty'));
+        } else {}
+
+        return ListView.builder(
+          itemCount: state.comingSoonList.length,
+          itemBuilder: (BuildContext context, index) {
+            final movie = state.comingSoonList[index];
+            if (movie.id == null) {
+              return const SizedBox();
+            }
+            return ComingSoonWidget(
+              id: movie.id.toString(),
+              month: 'mar',
+              day: '11',
+              posterPath: '$imageAppendUrl${movie.posterPath}',
+              movieName: movie.originalTitle ?? 'No title',
+              description: movie.overview ?? 'No description',
+            );
+          },
+        );
+      },
     );
   }
 }
