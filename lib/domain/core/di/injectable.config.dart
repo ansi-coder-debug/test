@@ -13,6 +13,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:test/application/downloads/downloads_bloc.dart' as _i631;
 import 'package:test/application/fast_laugh/fast_laugh_bloc.dart' as _i704;
+import 'package:test/application/home/home_bloc.dart' as _i3;
 import 'package:test/application/hot_and_new/hot_and_new_bloc.dart' as _i840;
 import 'package:test/application/search/search_bloc.dart' as _i181;
 import 'package:test/domain/downloads/i_downloads_repo.dart' as _i114;
@@ -45,6 +46,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i999.SearchService>(),
       ),
     );
+    gh.factory<_i3.HomeBloc>(() => _i3.HomeBloc(gh<_i810.HotAndNewService>()));
     gh.factory<_i704.FastLaughBloc>(
       () => _i704.FastLaughBloc(gh<_i114.IDownloadsRepo>()),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test/application/downloads/downloads_bloc.dart';
 import 'package:test/application/fast_laugh/fast_laugh_bloc.dart';
+import 'package:test/application/home/home_bloc.dart';
 import 'package:test/application/hot_and_new/hot_and_new_bloc.dart';
 import 'package:test/application/search/search_bloc.dart';
 import 'package:test/core/colors/colors.dart';
@@ -10,6 +11,7 @@ import 'package:test/presentaion/main_page/widgets/screen_main_page.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test/presentaion/new_and_hot/new_and_hot.dart';
+import 'package:test/presentaion/splash/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +30,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => getIt<SearchBloc>()),
         BlocProvider(create: (context) => getIt<FastLaughBloc>()),
         BlocProvider(create: (context) => getIt<HotAndNewBloc>()),
+         BlocProvider(create: (context) => getIt<HomeBloc>()),
       ],
 
       child: MaterialApp(
@@ -43,7 +46,8 @@ class MyApp extends StatelessWidget {
             bodyLarge: TextStyle(color: Colors.white),
           ),
         ),
-        home: ScreenMainPage(),
+        home:SplashScreen()
+        //  ScreenMainPage(),
       ),
     );
   }

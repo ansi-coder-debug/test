@@ -4,10 +4,7 @@ import 'package:test/core/constant.dart';
 
 class VideoWidget extends StatelessWidget {
   final String? url;
-  const VideoWidget({
-   required this.url,
-    Key? key, 
-   }) : super(key: key);
+  const VideoWidget({required this.url, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +13,24 @@ class VideoWidget extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: 200,
-          child: Image.network(url!,
-           fit: BoxFit.cover),
+          child: Image.network(
+            url!,
+            fit: BoxFit.cover,
+            loadingBuilder:
+                (BuildContext_, Widget child, ImageChunkEvent? progres) {
+                  if (progres == null) {
+                    return child;
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    );
+                  }
+                },
+            errorBuilder: (BuildContext_, Object a, StackTrace? trace) {
+              return Center(child: Icon(Icons.wifi,
+              color: Colors.white,));
+            },
+          ),
         ),
         Positioned(
           right: 10,

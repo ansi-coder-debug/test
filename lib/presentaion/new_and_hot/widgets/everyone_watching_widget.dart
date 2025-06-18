@@ -22,17 +22,20 @@ class EveryonesWatchingWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         KHeight,
-        const Text(
-          "Friends",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+         Text(
+          movieName,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         KHeight,
-        const Text(
-          "This hit sitcom follows the merry misadventures of six 20-something pals as they navigate the pitfalls of worh, life and love in 1990s manhattan",
-          style: TextStyle(color: AppStyles.CGreycolor),
+        Text(
+         description,
+         maxLines: 4,
+         overflow: TextOverflow.ellipsis,
+          style:const TextStyle(color:
+           AppStyles.CGreycolor),
         ),
         AppStyles.KHeight50,
-         VideoWidget(url: newAndHotTempImage,),
+         VideoWidget(url:posterPath),
         KHeight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,

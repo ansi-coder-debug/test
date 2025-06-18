@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:test/core/constant.dart';
 
 class NumberCard extends StatelessWidget {
-  const NumberCard({super.key, required this.index});
+  const NumberCard({super.key, 
+  required this.index,
+   required this.imageUrl
+  });
   final int index;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Row(
+        Row( 
           children: [
             SizedBox(width: 50, height: 150),
             Container(
@@ -17,9 +21,9 @@ class NumberCard extends StatelessWidget {
               width: 150,
               decoration: BoxDecoration(
                 borderRadius: KRadius20,
-                image: const DecorationImage(
+                image:  DecorationImage(
                   image: NetworkImage(
-                    'https://image.tmdb.org/t/p/w500/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg', //the north man
+                     imageUrl, //the north man
                   ),
                 ),
               ),
