@@ -33,7 +33,7 @@ class NewAndHot extends StatelessWidget {
             actions: [
               const Icon(Icons.cast, color: Colors.white),
               Kwidth,
-              Container(color: Colors.white, height: 25, width: 25),
+              Container(color: Colors.blue, height: 25, width: 25),
               Kwidth,
             ],
             bottom: TabBar(

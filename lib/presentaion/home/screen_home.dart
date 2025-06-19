@@ -6,6 +6,7 @@ import 'package:test/core/constant.dart';
 import 'package:test/presentaion/home/widget/background_card.dart';
 import 'package:test/presentaion/home/widget/custom_button_widget.dart';
 import 'package:test/presentaion/home/widget/number_title_card.dart';
+import 'package:test/presentaion/login/login_screen.dart';
 import 'package:test/presentaion/widgets/main_card.dart';
 import 'package:test/presentaion/widgets/main_title.dart';
 import 'package:test/presentaion/widgets/main_title_card.dart';
@@ -99,9 +100,7 @@ class ScreenHome extends StatelessWidget {
                           posterList: state.trendingMovieList,
                         ),
                         KHeight,
-                        NumberTitleCard(posterList:
-                         _top10TvShow.sublist(0,9),
-                         ),
+                        NumberTitleCard(posterList: _top10TvShow.sublist(0, 9)),
                         KHeight,
                         MainTitleCard(
                           title: "Tense Dramas",
@@ -138,10 +137,20 @@ class ScreenHome extends StatelessWidget {
                                   Spacer(),
                                   const Icon(Icons.cast, color: Colors.white),
                                   Kwidth,
-                                  Container(
-                                    color: Colors.blue,
-                                    height: 30,
-                                    width: 25,
+                                               //this blue container
+                                                 // Container(
+                                           //   color: Colors.blue,
+                                         //   height: 30,
+                                      //   width: 25,
+                                  // ),
+                                  IconButton(
+                                    onPressed: () {
+                                      signout(context);
+                                    },
+                                    icon: Icon(
+                                      Icons.exit_to_app,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   Kwidth,
                                 ],
@@ -165,6 +174,13 @@ class ScreenHome extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  signout(BuildContext ctx) {
+    Navigator.of(ctx).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (ctx1) => LoginScreen()),
+      (route) => false,
     );
   }
 }
