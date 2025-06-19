@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/application/home/home_bloc.dart';
 import 'package:test/core/constant.dart';
 import 'package:test/presentaion/home/widget/background_card.dart';
@@ -137,11 +138,11 @@ class ScreenHome extends StatelessWidget {
                                   Spacer(),
                                   const Icon(Icons.cast, color: Colors.white),
                                   Kwidth,
-                                               //this blue container
-                                                 // Container(
-                                           //   color: Colors.blue,
-                                         //   height: 30,
-                                      //   width: 25,
+                                  //this blue container
+                                  // Container(
+                                  //   color: Colors.blue,
+                                  //   height: 30,
+                                  //   width: 25,
                                   // ),
                                   IconButton(
                                     onPressed: () {
@@ -177,7 +178,10 @@ class ScreenHome extends StatelessWidget {
     );
   }
 
-  signout(BuildContext ctx) {
+  signout(BuildContext ctx) async {
+    final _sharedPrefs = await SharedPreferences.getInstance();
+    await _sharedPrefs.clear();
+
     Navigator.of(ctx).pushAndRemoveUntil(
       MaterialPageRoute(builder: (ctx1) => LoginScreen()),
       (route) => false,

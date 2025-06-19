@@ -13,6 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test/presentaion/new_and_hot/new_and_hot.dart';
 import 'package:test/presentaion/splash/splash_screen.dart';
 
+const SAVE_KEY_NAME = 'UserLoggedIn';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => getIt<SearchBloc>()),
         BlocProvider(create: (context) => getIt<FastLaughBloc>()),
         BlocProvider(create: (context) => getIt<HotAndNewBloc>()),
-         BlocProvider(create: (context) => getIt<HomeBloc>()),
+        BlocProvider(create: (context) => getIt<HomeBloc>()),
       ],
 
       child: MaterialApp(
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
             bodyLarge: TextStyle(color: Colors.white),
           ),
         ),
-        home:SplashScreen()
+        home: SplashScreen(),
         //  ScreenMainPage(),
       ),
     );

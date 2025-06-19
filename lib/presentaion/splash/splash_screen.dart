@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test/main.dart';
 import 'package:test/presentaion/login/login_screen.dart';
+import 'package:test/presentaion/main_page/widgets/screen_main_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     //implementation happen here but i calling future so i write in future
-    gotoLogin();
+    checkUserLoggedIn();
     super.initState();
   }
 
@@ -37,8 +40,15 @@ class _SplashScreenState extends State<SplashScreen> {
     ).push(MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 
-
-
-
-
+  Future<void> checkUserLoggedIn() async {
+    final _sharedPrefs = await SharedPreferences.getInstance();
+    final _userLoggedIn = _sharedPrefs.getBool(SAVE_KEY_NAME);
+    if (_userLoggedIn == null || _userLoggedIn == false) {
+      gotoLogin();
+    } else {
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (ctx1) => ScreenMainPage()));
+    }
+  }
 }
