@@ -86,7 +86,10 @@ class ScreenHome extends StatelessWidget {
                     final _top10TvShow = state.trendingTvList.map((t) {
                       return '$imageAppendUrl${t.posterPath}';
                     }).toList();
-                    _top10TvShow.shuffle();
+                    // _top10TvShow.shuffle();
+                    final top10 = _top10TvShow.length >= 10
+                        ? _top10TvShow.sublist(0, 10)
+                        : _top10TvShow;
 
                     return ListView(
                       children: [
@@ -101,7 +104,9 @@ class ScreenHome extends StatelessWidget {
                           posterList: state.trendingMovieList,
                         ),
                         KHeight,
-                        NumberTitleCard(posterList: _top10TvShow.sublist(0, 9)),
+                        NumberTitleCard(
+                          posterList:top10,
+                        ),
                         KHeight,
                         MainTitleCard(
                           title: "Tense Dramas",
