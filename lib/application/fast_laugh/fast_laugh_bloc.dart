@@ -13,10 +13,10 @@ part 'fast_laugh_bloc.freezed.dart';
 // part '../bloc/fast_laugh_bloc.freezed.dart';
 
 final dummyVideoUrls = [
-  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
 ];
 
 ValueNotifier<Set<int>> likedVideosNotifier = ValueNotifier({});
@@ -29,19 +29,20 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
       //sending loading to ui
       emit(FastLaughState(videoList: [], isLoading: true, isError: false));
       //get trending movies
-      final _result = await _downloadService.getDownloadsImages();
-      final _state = _result.fold(
-        (l) {
-          return FastLaughState(videoList: [], isLoading: false, isError: true);
-        },
-        (Response) => FastLaughState(
-          videoList: Response,
-          isLoading: false,
-          isError: false,
+
+      final dummyList = List.generate(
+        10,
+        (index) => Downloads(
+          posterPath: '/t/p/w500/8YFL5QQVPy3AgrEQxNYVSgiPEbe.jpg',
+          title: 'Dummy Movie $index',
+          videoUrl: dummyVideoUrls[index % dummyVideoUrls.length],
         ),
       );
-      //send to ui
-      emit(_state);
+
+      // Send directly to UI
+      emit(
+        FastLaughState(videoList: dummyList, isLoading: false, isError: false),
+      );
     });
 
     on<LikeVideo>((event, emit) async {
@@ -54,4 +55,4 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
       likedVideosNotifier.notifyListeners();
     });
   }
-}
+}  

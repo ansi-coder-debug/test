@@ -7,12 +7,14 @@ part of 'downloads.dart';
 // **************************************************************************
 
 _Downloads _$DownloadsFromJson(Map<String, dynamic> json) => _Downloads(
-  posterPath: json['poster_path'] as String?,
+  posterPath: json['posterPath'] as String?,
   title: json['title'] as String?,
+  videoUrl: json['videoUrl'] as String? ?? null,
 );
 
 Map<String, dynamic> _$DownloadsToJson(_Downloads instance) =>
     <String, dynamic>{
-      'poster_path': instance.posterPath,
+      'posterPath': instance.posterPath,
       'title': instance.title,
+      'videoUrl': instance.videoUrl,
     };
