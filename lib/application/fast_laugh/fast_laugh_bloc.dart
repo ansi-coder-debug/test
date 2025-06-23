@@ -41,7 +41,9 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
 
       // Send directly to UI
       emit(
-        FastLaughState(videoList: dummyList, isLoading: false, isError: false),
+        FastLaughState(videoList: dummyList,
+         isLoading: false,
+          isError: false),
       );
     });
 

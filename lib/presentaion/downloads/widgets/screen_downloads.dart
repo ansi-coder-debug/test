@@ -90,14 +90,14 @@ class Section2 extends StatelessWidget {
                         ),
                         DownloadsImageWidget(
                           imageList:
-                              '$imageAppendUrl${state.downloads![1].posterPath}',
+                              '$imageAppendUrl${state.downloads![4].posterPath}',
                           margin: EdgeInsets.only(right: 170, top: 50),
                           angle: -20,
                           size: Size(size.width * 0.35, size.width * 0.55),
                         ),
                         DownloadsImageWidget(
                           imageList:
-                              '$imageAppendUrl${state.downloads![7].posterPath}',
+                              '$imageAppendUrl${state.downloads![2].posterPath}',
                           radius: 8,
                           margin: EdgeInsets.only(bottom: 10, top: 50),
                           size: Size(size.width * 0.4, size.width * 0.6),

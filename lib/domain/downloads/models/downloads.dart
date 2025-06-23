@@ -7,11 +7,17 @@ part 'downloads.g.dart';
 @freezed
 abstract class Downloads with _$Downloads {
   const factory Downloads({
-     required String? posterPath,
-    required String? title,
-    @Default(null)String? videoUrl,
+  @JsonKey(name: 'poster_path') required String? posterPath,
+  @JsonKey(name: 'title') required String? title,
+  @Default(null) String? videoUrl,
+}) = _Downloads;
+
+  // const factory Downloads({
+  //    required String? posterPath,
+  //   required String? title,
+  //   @Default(null)String? videoUrl,
     
-  }) = _Downloads;
+  // }) = _Downloads;
 
   factory Downloads.fromJson(Map<String, dynamic> json) =>
       _$DownloadsFromJson(json);

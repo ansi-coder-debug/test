@@ -36,7 +36,7 @@ class DownloadsBloc extends Bloc<DownloadsEvent, DownloadsState> {
           ),
           (success) => state.copyWith(
             isLoading: false,
-            downloads: success,
+            downloads: testDownloads,
             downloadsFailureOrSuccessOption: some(right(success)),
           ),
         ),
